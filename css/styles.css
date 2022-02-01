@@ -2,6 +2,10 @@ body {
   background-color: green;
 }
 
+#car {
+  position: absolute;
+}
+
 .driver-seat {
   height: 12rem;
   width: 12rem;

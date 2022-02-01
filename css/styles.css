@@ -1,8 +1,24 @@
 body {
-  background-color: darkgreen;
+  background-color: green;
 }
 
 .driver-seat {
-  height: 15rem;
-  width: 15rem;
+  height: 12rem;
+  width: 12rem;
+}
+
+.driver-seat.north {
+  transform: rotate(270deg);
+}
+
+.driver-seat.east {
+  transform: rotate(0);
+}
+
+.driver-seat.south {
+  transform: rotate(90deg);
+}
+
+.driver-seat.west {
+  transform: rotate(180deg);
 }

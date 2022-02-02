@@ -16,3 +16,15 @@ window.addEventListener('keydown', function (event) {
     $car.classList.add('west');
   }
 });
+
+var carPosition = 0;
+
+window.addEventListener('keydown', function (event) {
+  var space = event.key;
+  if (space === ' ') {
+    setInterval(function () {
+      carPosition += 10;
+      $car.style.left = carPosition + 'px';
+    }, 16);
+  }
+});

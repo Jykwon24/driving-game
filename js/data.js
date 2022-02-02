@@ -4,6 +4,6 @@ var carData = {
   location: {
     x: 0,
     y: 0
-  }
-
+  },
+  started: null
 };

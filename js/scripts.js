@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 var $car = document.getElementById('car');
 
 window.addEventListener('keydown', function (event) {
@@ -18,13 +19,18 @@ window.addEventListener('keydown', function (event) {
 });
 
 var carPosition = 0;
+var carStart;
 
 window.addEventListener('keydown', function (event) {
   var space = event.key;
-  if (space === ' ') {
-    setInterval(function () {
+  if (space === ' ' && (carData.started === null || carData.started === false)) {
+    carStart = setInterval(function () {
       carPosition += 10;
       $car.style.left = carPosition + 'px';
     }, 16);
+    carData.started = true;
+  } else if (carData.started === true) {
+    clearInterval(carStart);
+    carData.started = false;
   }
 });

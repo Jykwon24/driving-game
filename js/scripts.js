@@ -1,36 +1,97 @@
 /* eslint-disable no-undef */
 var $car = document.getElementById('car');
 
-window.addEventListener('keydown', function (event) {
-  var arrow = event.key;
-  if (arrow === 'ArrowUp') {
-    $car.classList.remove('east', 'south', 'west');
-    $car.classList.add('north');
-  } else if (arrow === 'ArrowRight') {
-    $car.classList.remove('north', 'south', 'west');
-    $car.classList.add('east');
-  } else if (arrow === 'ArrowDown') {
-    $car.classList.remove('north', 'east', 'west');
-    $car.classList.add('south');
-  } else if (arrow === 'ArrowLeft') {
-    $car.classList.remove('north', 'south', 'east');
-    $car.classList.add('west');
-  }
-});
+var carData = {
+  direction: 'east',
+  location: {
+    x: $car.x,
+    y: $car.y
+  },
+  started: null
+};
 
-var carPosition = 0;
+var carPosition = carData.location;
 var carStart;
 
 window.addEventListener('keydown', function (event) {
-  var space = event.key;
-  if (space === ' ' && (carData.started === null || carData.started === false)) {
+  var arrow = event.key;
+  if (arrow === ' ' && (carData.started === null || carData.started === false)) {
     carStart = setInterval(function () {
-      carPosition += 10;
-      $car.style.left = carPosition + 'px';
+      carPosition.x += 10;
+      $car.style.left = carPosition.x + 'px';
     }, 16);
     carData.started = true;
-  } else if (carData.started === true) {
+  } else if (arrow === ' ' && carData.direction === 'north' && carData.started === false) {
+    clearInterval(carStart);
+    up();
+  } else if (arrow === ' ' && carData.started === true) {
     clearInterval(carStart);
     carData.started = false;
+  } else if (arrow === 'ArrowUp' && carData.started === true) {
+    clearInterval(carStart);
+    $car.classList.remove('east', 'south', 'west');
+    $car.classList.add('north');
+    carData.direction = 'north';
+    up();
+  } else if (arrow === 'ArrowRight' && carData.started === true) {
+    clearInterval(carStart);
+    $car.classList.remove('north', 'south', 'west');
+    $car.classList.add('east');
+    carData.direction = 'east';
+    right();
+  } else if (arrow === 'ArrowDown' && carData.started === true) {
+    clearInterval(carStart);
+    $car.classList.remove('north', 'east', 'west');
+    $car.classList.add('south');
+    carData.direction = 'south';
+    down();
+  } else if (arrow === 'ArrowLeft' && carData.started === true) {
+    clearInterval(carStart);
+    $car.classList.remove('north', 'south', 'east');
+    $car.classList.add('west');
+    carData.direction = 'west';
+    left();
   }
 });
+
+// window.addEventListener('keydown', function (event) {
+//   var space = event.key;
+//   if (space === ' ' && (carData.started === null || carData.started === false)) {
+//     carStart = setInterval(function () {
+//       carPosition.x += 10;
+//       $car.style.left = carPosition.x + 'px';
+//     }, 16);
+//     carData.started = true;
+//   } else if (space === ' ' && carData.started === true) {
+//     clearInterval(carStart);
+//     carData.started = false;
+//   }
+// });
+
+function right() {
+  carStart = setInterval(function () {
+    carPosition.x += 10;
+    $car.style.left = carPosition.x + 'px';
+  }, 16);
+}
+
+function left() {
+  carStart = setInterval(function () {
+    carPosition.x -= 10;
+    $car.style.left = carPosition.x + 'px';
+  }, 16);
+}
+
+function up() {
+  carStart = setInterval(function () {
+    carPosition.y -= 10;
+    $car.style.top = carPosition.y + 'px';
+  }, 16);
+}
+
+function down() {
+  carStart = setInterval(function () {
+    carPosition.y += 10;
+    $car.style.top = carPosition.y + 'px';
+  }, 16);
+}

@@ -71,24 +71,10 @@ window.addEventListener('keydown', function (event) {
     left();
   } else if (arrow === 'ArrowLeft' && carData.started === false) {
     $car.classList.remove('north', 'south', 'west');
-    $car.classList.add('east');
-    carData.direction = 'east';
+    $car.classList.add('west');
+    carData.direction = 'west';
   }
 });
-
-// window.addEventListener('keydown', function (event) {
-//   var space = event.key;
-//   if (space === ' ' && (carData.started === null || carData.started === false)) {
-//     carStart = setInterval(function () {
-//       carPosition.x += 10;
-//       $car.style.left = carPosition.x + 'px';
-//     }, 16);
-//     carData.started = true;
-//   } else if (space === ' ' && carData.started === true) {
-//     clearInterval(carStart);
-//     carData.started = false;
-//   }
-// });
 
 function right() {
   carStart = setInterval(function () {

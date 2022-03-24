@@ -33,16 +33,25 @@ window.addEventListener('keydown', function (event) {
   } else if (arrow === ' ' && carData.started === true) {
     clearInterval(carStart);
     carData.started = false;
-  } else if (arrow === 'ArrowUp' && carData.started === true) {
-    clearInterval(carStart);
+  } else if (arrow === 'ArrowUp') {
+    if (carData.started) {
+      clearInterval(carStart);
+      up();
+    }
     $car.classList.remove('east', 'south', 'west');
     $car.classList.add('north');
     carData.direction = 'north';
-    up();
-  } else if (arrow === 'ArrowUp' && carData.started === false) {
-    $car.classList.remove('east', 'south', 'west');
-    $car.classList.add('north');
-    carData.direction = 'north';
+
+  // } else if (arrow === 'ArrowUp' && carData.started === true) {
+  //   clearInterval(carStart);
+  //   $car.classList.remove('east', 'south', 'west');
+  //   $car.classList.add('north');
+  //   carData.direction = 'north';
+  //   up();
+  // } else if (arrow === 'ArrowUp' && carData.started === false) {
+  //   $car.classList.remove('east', 'south', 'west');
+  //   $car.classList.add('north');
+  //   carData.direction = 'north';
   } else if (arrow === 'ArrowRight' && carData.started === true) {
     clearInterval(carStart);
     $car.classList.remove('north', 'south', 'west');
@@ -103,3 +112,7 @@ function down() {
     $car.style.top = carPosition.y + 'px';
   }, 16);
 }
+
+// function drivingOOP() {
+
+// }

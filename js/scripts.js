@@ -41,44 +41,27 @@ window.addEventListener('keydown', function (event) {
     $car.classList.remove('east', 'south', 'west');
     $car.classList.add('north');
     carData.direction = 'north';
-
-  // } else if (arrow === 'ArrowUp' && carData.started === true) {
-  //   clearInterval(carStart);
-  //   $car.classList.remove('east', 'south', 'west');
-  //   $car.classList.add('north');
-  //   carData.direction = 'north';
-  //   up();
-  // } else if (arrow === 'ArrowUp' && carData.started === false) {
-  //   $car.classList.remove('east', 'south', 'west');
-  //   $car.classList.add('north');
-  //   carData.direction = 'north';
-  } else if (arrow === 'ArrowRight' && carData.started === true) {
-    clearInterval(carStart);
+  } else if (arrow === 'ArrowRight') {
+    if (carData.started) {
+      clearInterval(carStart);
+      right();
+    }
     $car.classList.remove('north', 'south', 'west');
     $car.classList.add('east');
     carData.direction = 'east';
-    right();
-  } else if (arrow === 'ArrowRight' && carData.started === false) {
-    $car.classList.remove('north', 'south', 'west');
-    $car.classList.add('east');
-    carData.direction = 'east';
-  } else if (arrow === 'ArrowDown' && carData.started === true) {
-    clearInterval(carStart);
-    $car.classList.remove('north', 'east', 'west');
-    $car.classList.add('south');
-    carData.direction = 'south';
-    down();
-  } else if (arrow === 'ArrowDown' && carData.started === false) {
+  } else if (arrow === 'ArrowDown') {
+    if (carData.started) {
+      clearInterval(carStart);
+      down();
+    }
     $car.classList.remove('east', 'north', 'west');
     $car.classList.add('south');
     carData.direction = 'south';
-  } else if (arrow === 'ArrowLeft' && carData.started === true) {
-    clearInterval(carStart);
-    $car.classList.remove('north', 'south', 'east');
-    $car.classList.add('west');
-    carData.direction = 'west';
-    left();
-  } else if (arrow === 'ArrowLeft' && carData.started === false) {
+  } else if (arrow === 'ArrowLeft') {
+    if (carData.started) {
+      clearInterval(carStart);
+      left();
+    }
     $car.classList.remove('north', 'south', 'west');
     $car.classList.add('west');
     carData.direction = 'west';
